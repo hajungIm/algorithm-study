@@ -18,6 +18,11 @@ public class twoXn타일링 {
 
         if (n == 1) {
             System.out.println(1);
+            return;
+        }
+        if (n == 2) {
+            System.out.println(2);
+            return;
         }
 
         dp = new Long[n + 1];
@@ -25,18 +30,14 @@ public class twoXn타일링 {
         dp[0] = 0L;
         dp[1] = 1L;
         dp[2] = 2L;
+        dp[3] = 3L;
 
         System.out.println(find(n));
-
     }
 
     private static Long find(int n) {
         if (dp[n] == null) {
-            if (n % 2 == 1) {
-                dp[n] = (find(n - 1) + find(n - 2)) % mod;
-            } else {
-                dp[n] = (2 * find(n - 2) + 1) % mod;
-            }
+            dp[n] = (find(n - 1) + find(n - 2)) % mod;
         }
         return dp[n];
     }
