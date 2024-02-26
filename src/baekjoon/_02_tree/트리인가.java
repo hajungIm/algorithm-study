@@ -10,43 +10,74 @@ import java.util.*;
 public class 트리인가 {
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static boolean isEnd = false;
 
     public static void main(String[] args) throws IOException {
         StringBuilder sb = new StringBuilder();
 
-        int k = 0;
-        while (true) {
+        int k = 1;
+        while (!isEnd) {
             ArrayList<int[]> input = getInput();
-            isTree(input);
+
+            if (isEnd) {
+                break;
+            }
+
+            if(isTree(input)) {
+                sb.append(String.format("Case %d is a tree.\n", k++));
+            } else {
+                sb.append(String.format("Case %d is not a tree.\n", k++));
+            }
+
+//            StringTokenizer st = new StringTokenizer(br.readLine());
+//            while (st.hasMoreTokens()) {
+//                if (Integer.parseInt(st.nextToken()) == -1) {
+//                    flag = false;
+//                    break;
+//                }
+//            }
         }
+
+        System.out.println(sb);
     }
 
     private static ArrayList<int[]> getInput() throws IOException {
         ArrayList<int[]> result = new ArrayList<>();
         boolean flag = true;
         while (flag) {
-            String[] input = br.readLine().split(" ");
-            int tmp = 0;
-            for (int i = 0; i < input.length; i++) {
-                if (i % 0 == 0) {
-                    tmp = Integer.parseInt(input[i]);
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            while (st.hasMoreTokens()) {
+                int start = Integer.parseInt(st.nextToken());
+                int end = Integer.parseInt(st.nextToken());
+
+                if (start == -1 && end == -1) {
+                    isEnd = true;
+                    flag = false;
+                } else if (start == 0 && end == 0) {
+                    flag = false;
                 } else {
-                    if (tmp == 0 && Integer.parseInt(input[i]) == 0) {
-                        flag = false;
-                    } else {
-                        result.add(new int[]{tmp, Integer.parseInt(input[i])});
-                    }
+                    result.add(new int[]{start, end});
                 }
             }
         }
         return result;
     }
 
-    private boolean isTree(ArrayList<int[]> arr) {
-        Set<Integer> income = new HashSet<>();
+    private static boolean isTree(ArrayList<int[]> arr) {
+        Map<Integer, Integer> nodes = new HashMap<>();
 
-        for (int[] input : arr) {
+        for (int[] n : arr) {
+            nodes.put(n[0], nodes.getOrDefault(n[0], 0));
+            nodes.put(n[1], nodes.getOrDefault(n[1], 0) + 1);
+        }
 
+        boolean isRoot = false;
+        for (int value : nodes.values()) {
+            if (value > 1 || (value == 0 && isRoot)) {
+                return false;
+            } else if (value == 0) {
+                isRoot = true;
+            }
         }
         return true;
     }
