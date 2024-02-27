@@ -14,10 +14,29 @@ public class 트리인가 {
 
     public static void main(String[] args) throws IOException {
         StringBuilder sb = new StringBuilder();
+        StringTokenizer st = new StringTokenizer("");
 
         int k = 1;
         while (!isEnd) {
-            ArrayList<int[]> input = getInput();
+            ArrayList<int[]> input = new ArrayList<>();
+
+            while (true) {
+                while (!st.hasMoreTokens()) {
+                    st = new StringTokenizer(br.readLine());
+                }
+
+                int start = Integer.parseInt(st.nextToken());
+                int end = Integer.parseInt(st.nextToken());
+
+                if (start == -1 && end == -1) {
+                    isEnd = true;
+                    break;
+                } else if (start == 0 && end == 0) {
+                    break;
+                } else {
+                    input.add(new int[]{start, end});
+                }
+            }
 
             if (isEnd) {
                 break;
