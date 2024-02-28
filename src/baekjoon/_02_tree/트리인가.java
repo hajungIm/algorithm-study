@@ -47,14 +47,6 @@ public class 트리인가 {
             } else {
                 sb.append(String.format("Case %d is not a tree.\n", k++));
             }
-
-//            StringTokenizer st = new StringTokenizer(br.readLine());
-//            while (st.hasMoreTokens()) {
-//                if (Integer.parseInt(st.nextToken()) == -1) {
-//                    flag = false;
-//                    break;
-//                }
-//            }
         }
 
         System.out.println(sb);
