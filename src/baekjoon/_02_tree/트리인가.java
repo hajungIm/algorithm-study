@@ -10,7 +10,6 @@ import java.util.*;
 public class 트리인가 {
     public static void main(String[] args) {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
     }
 
 }
