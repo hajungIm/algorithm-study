@@ -62,17 +62,17 @@ public class 트리인가 {
         }
 
         Set<Integer> income = new HashSet<>();
-        Map<Integer, Integer> line = new HashMap<>();
+        Set<Integer> nodes = new HashSet<>();
         for (int[] input : inputs) {
             // 루트 제외 모든 노드 단 하나의 들어오는 간선
             if (!income.add(input[1])) {
                 return false;
             }
-            line.put(input[0], line.getOrDefault(input[0], 0) + 1);
-            line.put(input[1], line.getOrDefault(input[0], 0));
+            nodes.add(input[0]);
+            nodes.add(input[1]);
         }
         // 전체 노드 수 - 1 == 간선 수 만족해야지 트리
-        if (line.size() - 1 == income.size()) {
+        if (nodes.size() - 1 == income.size()) {
             return true;
         }
         return false;
