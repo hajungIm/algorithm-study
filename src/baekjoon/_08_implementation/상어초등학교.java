@@ -8,6 +8,22 @@ import java.util.*;
  */
 
 public class 상어초등학교 {
+
+    static class Seat {
+        int x;
+        int y;
+        int likedCnt;
+        int emptyCnt;
+
+        public Seat(int x, int y, int likedCnt, int emptyCnt) {
+            this.x = x;
+            this.y = y;
+            this.likedCnt = likedCnt;
+            this.emptyCnt = emptyCnt;
+        }
+
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
