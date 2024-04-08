@@ -1,2 +1,1 @@
-# algorithm-study  
-test
+# algorithm-study
