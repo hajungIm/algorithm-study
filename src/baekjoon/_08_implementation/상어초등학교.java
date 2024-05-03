@@ -59,6 +59,5 @@ public class 상어초등학교 {
     }
 
     private static Seat findSeat(int student) {
-
     }
 }
